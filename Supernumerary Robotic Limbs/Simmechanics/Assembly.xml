@@ -1,0 +1,666 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no" ?>
+<PhysicalModelingXMLFile>
+
+  <formatVersion>"1.0.4"</formatVersion>
+
+  <internalVersion>1</internalVersion>
+
+  <createdUsing>"SimMechanics Link Version 4.2"</createdUsing>
+
+  <createdFrom>"SolidWorks 21.0.0"</createdFrom>
+
+  <createdOn>"03/18/15||21:30:41"</createdOn>
+
+  <createdBy>"No formal user defined!"</createdBy>
+
+  <name>"Assembly"</name>
+
+  <SimMechanics>
+    <name>"Assembly"</name>
+    <nodeID>"Assembly"</nodeID>
+    <bodies>
+      <Body>
+        <name>"Sub_Assembly2-1"</name>
+        <nodeID>"Sub_Assembly2-1"</nodeID>
+        <status>""</status>
+        <mass>0.955246</mass>
+        <massUnits>"kg"</massUnits>
+        <inertia>0.000813069,2.47935e-007,-8.81681e-005,2.47935e-007,0.00189612,-9.90122e-009,-8.81681e-005,-9.90122e-009,0.00152266</inertia>
+        <inertiaUnits>"kg*m^2"</inertiaUnits>
+        <volume>0.000353795</volume>
+        <volumeUnits>"m^3"</volumeUnits>
+        <surfaceArea>0.0818218</surfaceArea>
+        <surfaceAreaUnits>"m^2"</surfaceAreaUnits>
+        <frames>
+          <Frame>
+            <name>"CG"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly2-1::CG(AUTOGEN)"</nodeID>
+            <position>0.0951659,0.0666308,-0.0315029</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>0,0,-1,0,-1,0,-1,0,0</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame>
+            <name>"CS1"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly2-1::CS1(AUTOGEN)"</nodeID>
+            <position>0.180947,0.0857083,0.0737485</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>0,0,-1,0,-1,0,-1,0,0</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame ref="3">
+            <name>"CS2"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly2-1:-:Sub_Assembly3-1::Sub_Assembly2-1(AUTOGEN)"</nodeID>
+            <position>0.0939311,0.0666392,-0.0770839</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame ref="8">
+            <name>"CS3"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly1-1:-:Sub_Assembly2-1::Sub_Assembly2-1(AUTOGEN)"</nodeID>
+            <position>0.134581,0.0666392,0.0587152</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+        </frames>
+        <geometryFileName>"Assembly - Sub_Assembly2-1.STL"</geometryFileName>
+        <MaterialProp>
+          <color>1,1,0</color>
+          <ambient>1</ambient>
+          <diffuse>1</diffuse>
+          <specular>1</specular>
+          <shininess>0.31</shininess>
+          <transparency>0</transparency>
+          <emission>0</emission>
+        </MaterialProp>
+      </Body>
+      <Body>
+        <name>"Base_Assembly-1"</name>
+        <nodeID>"Base_Assembly-1"</nodeID>
+        <status>""</status>
+        <mass>0.816132</mass>
+        <massUnits>"kg"</massUnits>
+        <inertia>0.00101868,2.68456e-014,-0.000208027,2.68456e-014,0.00141452,-5.88219e-014,-0.000208027,-5.88219e-014,0.000763124</inertia>
+        <inertiaUnits>"kg*m^2"</inertiaUnits>
+        <volume>0.000302271</volume>
+        <volumeUnits>"m^3"</volumeUnits>
+        <surfaceArea>0.0458626</surfaceArea>
+        <surfaceAreaUnits>"m^2"</surfaceAreaUnits>
+        <frames>
+          <Frame>
+            <name>"CG"</name>
+            <displayName>""</displayName>
+            <nodeID>"Base_Assembly-1::CG(AUTOGEN)"</nodeID>
+            <position>0.0863608,0.0666392,0.155753</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame>
+            <name>"CS1"</name>
+            <displayName>""</displayName>
+            <nodeID>"Base_Assembly-1::CS1(AUTOGEN)"</nodeID>
+            <position>-0.0257981,-0.00724452,0.107815</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame ref="2">
+            <name>"CS2"</name>
+            <displayName>""</displayName>
+            <nodeID>"Assembly/RootPart:-:Base_Assembly-1::Base_Assembly-1(AUTOGEN)"</nodeID>
+            <position>0.0863608,0.0666392,0.155753</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame ref="9">
+            <name>"CS3"</name>
+            <displayName>""</displayName>
+            <nodeID>"Base_Assembly-1:-:Sub_Assembly1-1::Base_Assembly-1(AUTOGEN)"</nodeID>
+            <position>0.0918311,0.0666392,0.120815</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+        </frames>
+        <geometryFileName>"Assembly - Base_Assembly-1.STL"</geometryFileName>
+        <MaterialProp>
+          <color>0,0,1</color>
+          <ambient>1</ambient>
+          <diffuse>1</diffuse>
+          <specular>1</specular>
+          <shininess>0.31</shininess>
+          <transparency>0</transparency>
+          <emission>0</emission>
+        </MaterialProp>
+      </Body>
+      <Body>
+        <name>"RootPart"</name>
+        <nodeID>"Assembly/RootPart"</nodeID>
+        <status>""</status>
+        <mass>0</mass>
+        <massUnits>"kg"</massUnits>
+        <inertia>0,0,0,0,0,0,0,0,0</inertia>
+        <inertiaUnits>"kg*m^2"</inertiaUnits>
+        <volume>0</volume>
+        <volumeUnits>"m^3"</volumeUnits>
+        <surfaceArea>0</surfaceArea>
+        <surfaceAreaUnits>"m^2"</surfaceAreaUnits>
+        <frames>
+          <Frame>
+            <name>"CG"</name>
+            <displayName>""</displayName>
+            <nodeID>"Assembly/RootPart::CG(AUTOGEN)"</nodeID>
+            <position>0.108255,0.0656856,-0.00842688</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame>
+            <name>"CS1"</name>
+            <displayName>""</displayName>
+            <nodeID>"Assembly/RootPart::CS1(AUTOGEN)"</nodeID>
+            <position>0,0,0</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame ref="1">
+            <name>"CS2"</name>
+            <displayName>""</displayName>
+            <nodeID>"Assembly/RootPart:-:Base_Assembly-1::Assembly/RootPart(AUTOGEN)"</nodeID>
+            <position>0.0863608,0.0666392,0.155753</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame ref="12">
+            <name>"CS3"</name>
+            <displayName>""</displayName>
+            <nodeID>"Assembly/RootPart:-:RootGround::Assembly/RootPart(AUTOGEN)"</nodeID>
+            <position>0.108255,0.0656856,-0.00842688</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+        </frames>
+        <geometryFileName>""</geometryFileName>
+      </Body>
+      <Body>
+        <name>"Sub_Assembly1-1"</name>
+        <nodeID>"Sub_Assembly1-1"</nodeID>
+        <status>""</status>
+        <mass>0.850196</mass>
+        <massUnits>"kg"</massUnits>
+        <inertia>0.000429886,2.65004e-007,7.38865e-006,2.65004e-007,0.0010883,-4.75425e-008,7.38865e-006,-4.75425e-008,0.00103792</inertia>
+        <inertiaUnits>"kg*m^2"</inertiaUnits>
+        <volume>0.000314887</volume>
+        <volumeUnits>"m^3"</volumeUnits>
+        <surfaceArea>0.0545722</surfaceArea>
+        <surfaceAreaUnits>"m^2"</surfaceAreaUnits>
+        <frames>
+          <Frame>
+            <name>"CG"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly1-1::CG(AUTOGEN)"</nodeID>
+            <position>0.0944723,0.0666171,0.061243</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame>
+            <name>"CS1"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly1-1::CS1(AUTOGEN)"</nodeID>
+            <position>0.0758841,0.047428,0.0750282</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame ref="7">
+            <name>"CS2"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly1-1:-:Sub_Assembly2-1::Sub_Assembly1-1(AUTOGEN)"</nodeID>
+            <position>0.134581,0.0666392,0.0587152</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame ref="10">
+            <name>"CS3"</name>
+            <displayName>""</displayName>
+            <nodeID>"Base_Assembly-1:-:Sub_Assembly1-1::Sub_Assembly1-1(AUTOGEN)"</nodeID>
+            <position>0.0918311,0.0666392,0.120815</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+        </frames>
+        <geometryFileName>"Assembly - Sub_Assembly1-1.STL"</geometryFileName>
+        <MaterialProp>
+          <color>0,1,0</color>
+          <ambient>1</ambient>
+          <diffuse>1</diffuse>
+          <specular>1</specular>
+          <shininess>0.31</shininess>
+          <transparency>0</transparency>
+          <emission>0</emission>
+        </MaterialProp>
+      </Body>
+      <Body>
+        <name>"Sub_Assembly4-1"</name>
+        <nodeID>"Sub_Assembly4-1"</nodeID>
+        <status>""</status>
+        <mass>0.274259</mass>
+        <massUnits>"kg"</massUnits>
+        <inertia>0.00239407,-3.61918e-009,1.62879e-009,-3.61918e-009,0.000217632,9.3932e-005,1.62879e-009,9.3932e-005,0.00235245</inertia>
+        <inertiaUnits>"kg*m^2"</inertiaUnits>
+        <volume>0.00025906</volume>
+        <volumeUnits>"m^3"</volumeUnits>
+        <surfaceArea>0.113718</surfaceArea>
+        <surfaceAreaUnits>"m^2"</surfaceAreaUnits>
+        <frames>
+          <Frame>
+            <name>"CG"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly4-1::CG(AUTOGEN)"</nodeID>
+            <position>0.093931,0.0682545,-0.39259</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,0,-1,0,1,0</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame>
+            <name>"CS1"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly4-1::CS1(AUTOGEN)"</nodeID>
+            <position>0.0385874,-0.0559867,-0.149356</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,0,-1,0,1,0</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame ref="6">
+            <name>"CS2"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly3-1:-:Sub_Assembly4-1::Sub_Assembly4-1(AUTOGEN)"</nodeID>
+            <position>0.0939311,0.109639,-0.230684</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+        </frames>
+        <geometryFileName>"Assembly - Sub_Assembly4-1.STL"</geometryFileName>
+        <MaterialProp>
+          <color>1,0,0</color>
+          <ambient>1</ambient>
+          <diffuse>1</diffuse>
+          <specular>1</specular>
+          <shininess>0.31</shininess>
+          <transparency>0</transparency>
+          <emission>0</emission>
+        </MaterialProp>
+      </Body>
+      <Body>
+        <name>"Sub_Assembly3-1"</name>
+        <nodeID>"Sub_Assembly3-1"</nodeID>
+        <status>""</status>
+        <mass>1.1576</mass>
+        <massUnits>"kg"</massUnits>
+        <inertia>0.00518587,0.000358971,0.00133807,0.000358971,0.00541515,-0.000899224,0.00133807,-0.000899224,0.00332016</inertia>
+        <inertiaUnits>"kg*m^2"</inertiaUnits>
+        <volume>0.000669614</volume>
+        <volumeUnits>"m^3"</volumeUnits>
+        <surfaceArea>0.276079</surfaceArea>
+        <surfaceAreaUnits>"m^2"</surfaceAreaUnits>
+        <frames>
+          <Frame>
+            <name>"CG"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly3-1::CG(AUTOGEN)"</nodeID>
+            <position>0.148009,0.0629405,-0.0652875</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>-0.866025,-0.5,0,0.5,-0.866025,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame>
+            <name>"CS1"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly3-1::CS1(AUTOGEN)"</nodeID>
+            <position>0.100495,0.0912165,-0.122623</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>-0.866025,-0.5,0,0.5,-0.866025,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame ref="4">
+            <name>"CS2"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly2-1:-:Sub_Assembly3-1::Sub_Assembly3-1(AUTOGEN)"</nodeID>
+            <position>0.0939311,0.0666392,-0.0770839</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+          <Frame ref="5">
+            <name>"CS3"</name>
+            <displayName>""</displayName>
+            <nodeID>"Sub_Assembly3-1:-:Sub_Assembly4-1::Sub_Assembly3-1(AUTOGEN)"</nodeID>
+            <position>0.0939311,0.109639,-0.230684</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+        </frames>
+        <geometryFileName>"Assembly - Sub_Assembly3-1.STL"</geometryFileName>
+        <MaterialProp>
+          <color>0.909804,0.443137,0.0313725</color>
+          <ambient>1</ambient>
+          <diffuse>1</diffuse>
+          <specular>1</specular>
+          <shininess>0.31</shininess>
+          <transparency>0</transparency>
+          <emission>0</emission>
+        </MaterialProp>
+      </Body>
+    </bodies>
+    <joints>
+      <SimpleJoint>
+        <name>"RootPart--Base_Assembly-1"</name>
+        <nodeID>"Assembly/RootPart:-:Base_Assembly-1"</nodeID>
+        <status>""</status>
+        <base>
+          <JointSide>
+            <name>""</name>
+            <connection>
+              <Frame ref="1"></Frame>
+            </connection>
+          </JointSide>
+        </base>
+        <follower>
+          <JointSide>
+            <name>""</name>
+            <connection>
+              <Frame ref="2"></Frame>
+            </connection>
+          </JointSide>
+        </follower>
+        <primitives>
+          <Primitive>
+            <name>"weld"</name>
+            <nodeID>""</nodeID>
+            <referenceFrame>"WORLD"</referenceFrame>
+            <axis>0.57735,0.57735,0.57735</axis>
+          </Primitive>
+        </primitives>
+      </SimpleJoint>
+      <SimpleJoint>
+        <name>"Sub_Assembly2-1--Sub_Assembly3-1"</name>
+        <nodeID>"Sub_Assembly2-1:-:Sub_Assembly3-1"</nodeID>
+        <status>""</status>
+        <base>
+          <JointSide>
+            <name>""</name>
+            <connection>
+              <Frame ref="3"></Frame>
+            </connection>
+          </JointSide>
+        </base>
+        <follower>
+          <JointSide>
+            <name>""</name>
+            <connection>
+              <Frame ref="4"></Frame>
+            </connection>
+          </JointSide>
+        </follower>
+        <primitives>
+          <Primitive>
+            <name>"revolute"</name>
+            <nodeID>""</nodeID>
+            <referenceFrame>"WORLD"</referenceFrame>
+            <axis>0,0,-1</axis>
+          </Primitive>
+        </primitives>
+      </SimpleJoint>
+      <SimpleJoint>
+        <name>"Sub_Assembly3-1--Sub_Assembly4-1"</name>
+        <nodeID>"Sub_Assembly3-1:-:Sub_Assembly4-1"</nodeID>
+        <status>""</status>
+        <base>
+          <JointSide>
+            <name>""</name>
+            <connection>
+              <Frame ref="5"></Frame>
+            </connection>
+          </JointSide>
+        </base>
+        <follower>
+          <JointSide>
+            <name>""</name>
+            <connection>
+              <Frame ref="6"></Frame>
+            </connection>
+          </JointSide>
+        </follower>
+        <primitives>
+          <Primitive>
+            <name>"revolute"</name>
+            <nodeID>""</nodeID>
+            <referenceFrame>"WORLD"</referenceFrame>
+            <axis>0,1,0</axis>
+          </Primitive>
+        </primitives>
+      </SimpleJoint>
+      <SimpleJoint>
+        <name>"Sub_Assembly1-1--Sub_Assembly2-1"</name>
+        <nodeID>"Sub_Assembly1-1:-:Sub_Assembly2-1"</nodeID>
+        <status>""</status>
+        <base>
+          <JointSide>
+            <name>""</name>
+            <connection>
+              <Frame ref="7"></Frame>
+            </connection>
+          </JointSide>
+        </base>
+        <follower>
+          <JointSide>
+            <name>""</name>
+            <connection>
+              <Frame ref="8"></Frame>
+            </connection>
+          </JointSide>
+        </follower>
+        <primitives>
+          <Primitive>
+            <name>"revolute"</name>
+            <nodeID>""</nodeID>
+            <referenceFrame>"WORLD"</referenceFrame>
+            <axis>1,0,0</axis>
+          </Primitive>
+        </primitives>
+      </SimpleJoint>
+      <SimpleJoint>
+        <name>"Base_Assembly-1--Sub_Assembly1-1"</name>
+        <nodeID>"Base_Assembly-1:-:Sub_Assembly1-1"</nodeID>
+        <status>""</status>
+        <base>
+          <JointSide>
+            <name>""</name>
+            <connection>
+              <Frame ref="9"></Frame>
+            </connection>
+          </JointSide>
+        </base>
+        <follower>
+          <JointSide>
+            <name>""</name>
+            <connection>
+              <Frame ref="10"></Frame>
+            </connection>
+          </JointSide>
+        </follower>
+        <primitives>
+          <Primitive>
+            <name>"revolute"</name>
+            <nodeID>""</nodeID>
+            <referenceFrame>"WORLD"</referenceFrame>
+            <axis>0,0,-1</axis>
+          </Primitive>
+        </primitives>
+      </SimpleJoint>
+      <SimpleJoint>
+        <name>"RootGround--RootPart"</name>
+        <nodeID>"Assembly/RootPart:-:RootGround"</nodeID>
+        <status>""</status>
+        <base>
+          <JointSide>
+            <name>""</name>
+            <connection>
+              <Frame ref="11"></Frame>
+            </connection>
+          </JointSide>
+        </base>
+        <follower>
+          <JointSide>
+            <name>""</name>
+            <connection>
+              <Frame ref="12"></Frame>
+            </connection>
+          </JointSide>
+        </follower>
+        <primitives>
+          <Primitive>
+            <name>"weld"</name>
+            <nodeID>""</nodeID>
+            <referenceFrame>"WORLD"</referenceFrame>
+            <axis>0.57735,0.57735,0.57735</axis>
+          </Primitive>
+        </primitives>
+      </SimpleJoint>
+    </joints>
+    <grounds>
+      <Ground>
+        <name>"RootGround"</name>
+        <nodeID>"RootGround"</nodeID>
+        <status>""</status>
+        <frame>
+          <Frame ref="11">
+            <name>"CS1"</name>
+            <displayName>""</displayName>
+            <nodeID>"Assembly/RootPart:-:RootGround::RootGround(AUTOGEN)"</nodeID>
+            <position>0.108255,0.0656856,-0.00842688</position>
+            <positionOrigin>"WORLD"</positionOrigin>
+            <positionReferenceFrame>"WORLD"</positionReferenceFrame>
+            <positionUnits>"m"</positionUnits>
+            <orientation>1,0,0,0,1,0,0,0,1</orientation>
+            <orientationType>"3x3 Transform"</orientationType>
+            <orientationUnits>"rad"</orientationUnits>
+            <orientationReferenceFrame>"WORLD"</orientationReferenceFrame>
+          </Frame>
+        </frame>
+      </Ground>
+    </grounds>
+    <subsystems></subsystems>
+    <connectionPorts></connectionPorts>
+    <id>0</id>
+  </SimMechanics>
+
+</PhysicalModelingXMLFile>

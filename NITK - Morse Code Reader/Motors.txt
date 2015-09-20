@@ -1,0 +1,26 @@
+Straight:
+
+  analogWrite(9,pwm_val);
+  analogWrite(10,pwm_val);
+  digitalWrite(11,LOW);
+  digitalWrite(12,HIGH);
+  digitalWrite(2,LOW);
+  digitalWrite(3,HIGH);
+
+Right:
+
+  analogWrite(9,pwm_val);
+  analogWrite(10,pwm_val);
+  digitalWrite(11,HIGH);
+  digitalWrite(12,LOW);
+  digitalWrite(2,LOW);
+  digitalWrite(3,HIGH);
+
+Left:
+
+  analogWrite(9,pwm_val);
+  analogWrite(10,pwm_val);
+  digitalWrite(11,LOW);
+  digitalWrite(12,HIGH);
+  digitalWrite(2,HIGH);
+  digitalWrite(3,LOW);

@@ -1,0 +1,1090 @@
+   1               		.file	"main.c"
+   2               	__SREG__ = 0x3f
+   3               	__SP_H__ = 0x3e
+   4               	__SP_L__ = 0x3d
+   5               	__CCP__  = 0x34
+   6               	__tmp_reg__ = 0
+   7               	__zero_reg__ = 1
+   9               		.text
+  10               	.Ltext0:
+  69               	.global	uart_read
+  71               	uart_read:
+  73               	.Ltext1:
+   1:uart.h        **** /*uart.h
+   2:uart.h        **** *******************************************************************************************
+   3:uart.h        **** COPYRIGHT(C)Technophilia Systems
+   4:uart.h        **** Date:...............13th Sept 2011
+   5:uart.h        **** Author:.............Technophilia R&D team
+   6:uart.h        **** Organization:.......Technophilia Syestems
+   7:uart.h        **** compiler:...........WinAVR
+   8:uart.h        **** 
+   9:uart.h        **** Description:
+  10:uart.h        **** 
+  11:uart.h        **** 	This header file enables uart communication feature between two devices.
+  12:uart.h        **** 	Include this header file in your C code. 
+  13:uart.h        **** 	Call the uart_init() function before calling any other functions to initialize the uart.
+  14:uart.h        **** 	
+  15:uart.h        **** Functions:
+  16:uart.h        **** 
+  17:uart.h        **** 	uart_init();	Call this function before calling any other functions to initialize 
+  18:uart.h        **** 					the uart communication.
+  19:uart.h        **** 	uart_char();  	This function will transmit a single character on the UART.
+  20:uart.h        **** 					For e.g. uart_char(0x61); will display A. 
+  21:uart.h        **** 					Again uart_char('b'); will display b.
+  22:uart.h        **** 	uart_string();	This function will display a string. 
+  23:uart.h        **** 					An e.g. of this would be like uart_string("This is AVR");
+  24:uart.h        **** 	uart_num();		This will show a 3-digit decimal value on the display
+  25:uart.h        **** 					For e.g. uart_num(35); will displkay 035
+  26:uart.h        **** 	uart_read();	This will show a 3-digit decimal value on the Display. 
+  27:uart.h        **** 					For e.g. if we give uart_read(x); then x value will be displayed.
+  28:uart.h        **** 
+  29:uart.h        **** *******************************************************************************************/
+  30:uart.h        **** 
+  31:uart.h        **** #ifndef _UART_H_
+  32:uart.h        **** #define _UART_H_
+  33:uart.h        **** 
+  34:uart.h        **** void uart_init()
+  35:uart.h        **** {
+  36:uart.h        **** 	UCSRA=0x00;
+  37:uart.h        **** 	UCSRB=0x18;
+  38:uart.h        **** 	UCSRC=0x86;
+  39:uart.h        **** 	UBRRH=0x00;
+  40:uart.h        **** 	UBRRL=0x4D;
+  41:uart.h        **** 	uart_delay(100);
+  42:uart.h        **** }
+  43:uart.h        **** 
+  44:uart.h        **** void uart_char(unsigned char uchar)
+  45:uart.h        **** {
+  46:uart.h        **** 	UDR=uchar;
+  47:uart.h        **** 	while((UCSRA&0x40)==0x00);
+  48:uart.h        **** 	uart_delay(1000);
+  49:uart.h        **** }
+  50:uart.h        ****  
+  51:uart.h        **** void uart_string(const unsigned char *ustring)
+  52:uart.h        **** {
+  53:uart.h        **** 	while ( *ustring )
+  54:uart.h        **** 	{
+  55:uart.h        **** 		UDR=*ustring++;
+  56:uart.h        **** 		while((UCSRA&0x40)==0x00);
+  57:uart.h        **** 		uart_delay(1000);
+  58:uart.h        **** 	}
+  59:uart.h        **** }
+  60:uart.h        ****  
+  61:uart.h        **** void uart_num(unsigned char num)
+  62:uart.h        **** {
+  63:uart.h        ****     unsigned char H=0,T=0,O=0;
+  64:uart.h        **** 	H=num/100;
+  65:uart.h        **** 	T=(num - (H*100))/10;
+  66:uart.h        **** 	O=(num - (H*100) - (T*10));
+  67:uart.h        **** 	
+  68:uart.h        **** 	uart_char(H+48);
+  69:uart.h        **** 	uart_char(T+48);
+  70:uart.h        **** 	uart_char(O+48);	
+  71:uart.h        **** }
+  72:uart.h        ****  
+  73:uart.h        **** unsigned char uart_read()
+  74:uart.h        **** {
+  74               	me size = 0 */
+  75               	.L2:
+  77               	.LM1:
+  78               		sbis 43-32,7
+  79               		rjmp .L2
+  75:uart.h        **** 	while((UCSRA&0x80)==0x00);
+  80               	n	68,0,76,.LM2-.LFBB1
+  81               	.LM2:
+  82 0000 5F9B      		in r24,44-32
+  83 0002 00C0      	/* epilogue start */
+  76:uart.h        **** 	return UDR;
+  84               	abn	68,0,77,.LM3-.LFBB1
+  85               	.LM3:
+  86 0004 8CB1      		ret
+  77:uart.h        **** }
+  88               	ope1:
+  91               	.global	uart_delay
+  93               	uart_delay:
+  95               	.LM4:
+  96               	.LFBB2:
+  97               	/* prologue: function */
+  78:uart.h        ****  
+  79:uart.h        **** void uart_delay(unsigned int delaytime)
+  80:uart.h        **** {
+  98               	ize = 0 */
+ 100               	.LM5:
+ 101               		ldi r18,lo8(0)
+ 102               		ldi r19,hi8(0)
+ 103               	.L6:
+ 105 0008 20E0      	.LM6:
+ 106 000a 30E0      	/* #APP */
+ 107               	 ;  84 "uart.h" 1
+  81:uart.h        **** 	unsigned int dc;
+  82:uart.h        **** 	for(dc=0;dc<=delaytime;dc++)
+  83:uart.h        **** 	{
+  84:uart.h        **** 		asm("nop");asm("nop");asm("nop");asm("nop");asm("nop");asm("nop");
+ 108               	 "" 2
+ 109               	 ;  84 "uart.h" 1
+ 110               		nop
+ 111               	 ;  0 "" 2
+ 112 000c 0000      	 ;  84 "uart.h" 1
+ 113               		nop
+ 114               	 ;  0 "" 2
+ 115 000e 0000      	 ;  84 "uart.h" 1
+ 116               		nop
+ 117               	 ;  0 "" 2
+ 118 0010 0000      	 ;  84 "uart.h" 1
+ 119               		nop
+ 120               	 ;  0 "" 2
+ 121 0012 0000      	 ;  84 "uart.h" 1
+ 122               		nop
+ 123               	 ;  0 "" 2
+ 125               	.LM7:
+ 126               	 ;  85 "uart.h" 1
+ 127 0016 0000      		nop
+ 128               	 ;  0 "" 2
+  85:uart.h        **** 		asm("nop");asm("nop");asm("nop");asm("nop");
+ 129               	p
+ 130               	 ;  0 "" 2
+ 131               	 ;  85 "uart.h" 1
+ 132 0018 0000      		nop
+ 133               	 ;  0 "" 2
+ 134               	 ;  85 "uart.h" 1
+ 135 001a 0000      		nop
+ 136               	 ;  0 "" 2
+ 138 001c 0000      	.LM8:
+ 139               	/* #NOAPP */
+ 140               		subi r18,lo8(-(1))
+ 141 001e 0000      		sbci r19,hi8(-(1))
+ 142               		cp r24,r18
+ 143               		cpc r25,r19
+ 144               		brsh .L6
+ 145               	/* epilogue start */
+ 147 0022 3F4F      	.LM9:
+ 148 0024 8217      		ret
+  86:uart.h        **** 	}
+  87:uart.h        **** }
+ 152               	2-.LFBB2
+ 153               	.Lscope2:
+ 156               	.global	uart_string
+ 158               	uart_string:
+ 160               	.LM10:
+ 161               	.LFBB3:
+ 162               		push r28
+ 163               		push r29
+ 164               	/* prologue: function */
+ 165               	/* frame size = 0 */
+ 166               		movw r28,r24
+ 167               		rjmp .L10
+ 168 002c CF93      	.L12:
+ 170               	.LM11:
+ 171               		out 44-32,r24
+ 172 0030 EC01      	.L11:
+ 174               	.LM12:
+ 175               		sbis 43-32,6
+ 176               		rjmp .L11
+ 178               	.LM13:
+ 179               		adiw r28,1
+ 181 0036 5E9B      	.LM14:
+ 182 0038 00C0      		ldi r24,lo8(1000)
+ 183               		ldi r25,hi8(1000)
+ 184               		rcall uart_delay
+ 185 003a 2196      	.L10:
+ 187               	.LM15:
+ 188 003c 88EE      		ld r24,Y
+ 189 003e 93E0      		tst r24
+ 190 0040 00D0      		brne .L12
+ 191               	/* epilogue start */
+ 193               	.LM16:
+ 194 0042 8881      		pop r29
+ 195 0044 8823      		pop r28
+ 196 0046 01F4      		ret
+ 198               	.Lscope3:
+ 201 004a CF91      	.global	uart_char
+ 203               	uart_char:
+ 205               	.LM17:
+ 206               	.LFBB4:
+ 207               	/* prologue: function */
+ 208               	/* frame size = 0 */
+ 210               	.LM18:
+ 211               		out 44-32,r24
+ 212               	.L16:
+ 214               	.LM19:
+ 215               		sbis 43-32,6
+ 216               		rjmp .L16
+ 218               	.LM20:
+ 219               		ldi r24,lo8(1000)
+ 220               		ldi r25,hi8(1000)
+ 221 0050 5E9B      		rcall uart_delay
+ 222 0052 00C0      	/* epilogue start */
+ 224               	.LM21:
+ 225 0054 88EE      		ret
+ 227 0058 00D0      	.Lscope4:
+ 230               	.global	uart_num
+ 232               	uart_num:
+ 234               	.LM22:
+ 235               	.LFBB5:
+ 236               		push r14
+ 237               		push r15
+ 238               		push r16
+ 239               		push r17
+ 240               	/* prologue: function */
+ 241               	/* frame size = 0 */
+ 242 005c EF92      		mov r17,r24
+ 244 0060 0F93      	.LM23:
+ 245 0062 1F93      		ldi r22,lo8(100)
+ 246               		rcall __udivmodqi4
+ 247               		mov r20,r24
+ 249               	.LM24:
+ 250               		mov r18,r24
+ 251 0066 64E6      		ldi r19,lo8(0)
+ 252 0068 00D0      		ldi r24,lo8(-100)
+ 253 006a 482F      		ldi r25,hi8(-100)
+ 254               		mul r18,r24
+ 255               		movw r14,r0
+ 256 006c 282F      		mul r18,r25
+ 257 006e 30E0      		add r15,r0
+ 258 0070 8CE9      		mul r19,r24
+ 259 0072 9FEF      		add r15,r0
+ 260 0074 289F      		clr r1
+ 261 0076 7001      		movw r24,r14
+ 262 0078 299F      		add r24,r17
+ 263 007a F00C      		adc r25,__zero_reg__
+ 264 007c 389F      		ldi r22,lo8(10)
+ 265 007e F00C      		ldi r23,hi8(10)
+ 266 0080 1124      		rcall __divmodhi4
+ 267 0082 C701      		mov r16,r22
+ 269 0086 911D      	.LM25:
+ 270 0088 6AE0      		mov r24,r20
+ 271 008a 70E0      		subi r24,lo8(-(48))
+ 272 008c 00D0      		rcall uart_char
+ 274               	.LM26:
+ 275               		mov r24,r16
+ 276 0090 842F      		subi r24,lo8(-(48))
+ 277 0092 805D      		rcall uart_char
+ 279               	.LM27:
+ 280               		subi r17,lo8(-(48))
+ 281 0096 802F      		add r17,r14
+ 282 0098 805D      		ldi r24,lo8(-10)
+ 283 009a 00D0      		ldi r25,hi8(-10)
+ 284               		mul r16,r24
+ 285               		mov r16,r0
+ 286 009c 105D      		clr r1
+ 287 009e 1E0D      		mov r24,r16
+ 288 00a0 86EF      		add r24,r17
+ 289 00a2 9FEF      		rcall uart_char
+ 290 00a4 089F      	/* epilogue start */
+ 292 00a8 1124      	.LM28:
+ 293 00aa 802F      		pop r17
+ 294 00ac 810F      		pop r16
+ 295 00ae 00D0      		pop r15
+ 296               		pop r14
+ 297               		ret
+ 299 00b0 1F91      	.Lscope5:
+ 301 00b4 FF90      	.global	uart_init
+ 303 00b8 0895      	uart_init:
+ 305               	.LM29:
+ 306               	.LFBB6:
+ 307               	/* prologue: function */
+ 308               	/* frame size = 0 */
+ 310               	.LM30:
+ 311               		out 43-32,__zero_reg__
+ 313               	.LM31:
+ 314               		ldi r24,lo8(24)
+ 315               		out 42-32,r24
+ 317 00ba 1BB8      	.LM32:
+ 318               		ldi r24,lo8(-122)
+ 319               		out 64-32,r24
+ 321 00be 8AB9      	.LM33:
+ 322               		out 64-32,__zero_reg__
+ 324 00c0 86E8      	.LM34:
+ 325 00c2 80BD      		ldi r24,lo8(77)
+ 326               		out 41-32,r24
+ 328 00c4 10BC      	.LM35:
+ 329               		ldi r24,lo8(100)
+ 330               		ldi r25,hi8(100)
+ 331 00c6 8DE4      		rcall uart_delay
+ 332 00c8 89B9      	/* epilogue start */
+ 334               	.LM36:
+ 335 00ca 84E6      		ret
+ 337 00ce 00D0      	.Lscope6:
+ 340               	.global	dely_ns
+ 342               	dely_ns:
+ 344               	.Ltext2:
+ 346               	.LM37:
+ 347               	.LFBB7:
+ 348               	/* prologue: function */
+ 349               	/* frame size = 0 */
+   1:lcd118010.h   **** /**************************************************************************************************
+   2:lcd118010.h   **** HEADER:LCD.h 
+   3:lcd118010.h   **** ***************************************************************************************************
+   4:lcd118010.h   **** 
+   5:lcd118010.h   **** *COPYRIGHT(c): Technophilia embedded systems.
+   6:lcd118010.h   **** *AUTHOR: Technophilia
+   7:lcd118010.h   **** *Target system: AVR devlopment board s/n-118010
+   8:lcd118010.h   **** *Manufacturer: Technophilia 
+   9:lcd118010.h   **** *Microcontroller: ATmega-8
+  10:lcd118010.h   **** *Clock: 12MHz
+  11:lcd118010.h   **** *COMPILER: WinAVR
+  12:lcd118010.h   **** 	
+  13:lcd118010.h   **** 
+  14:lcd118010.h   **** DESCRIPTION: 
+  15:lcd118010.h   **** 	This header files have implementation of some common finctions of the LCD.
+  16:lcd118010.h   **** 	Include this header file in your C code. Call the lcd_init() function before
+  17:lcd118010.h   **** 	calling any other functions to initialize the lcd.
+  18:lcd118010.h   **** 
+  19:lcd118010.h   **** 
+  20:lcd118010.h   **** 	lcd_init() ----- Call the lcd_init() function before calling any other functions
+  21:lcd118010.h   **** 			  to initialize the lcd.
+  22:lcd118010.h   **** 	lcd_cmd() ------ This function is used to give any command instructions to the
+  23:lcd118010.h   **** 			  LCD. For e.g lcd_cmd(0x01) will give the clear command.
+  24:lcd118010.h   **** 	lcd_char() ----- This function will display a single character on the LCD display.
+  25:lcd118010.h   **** 			  For example lcd_char(0x61) will display A. Again lcd_char('b')
+  26:lcd118010.h   **** 			  will display b.
+  27:lcd118010.h   **** 	lcd_string()---- This function will display a string. An example of this would be
+  28:lcd118010.h   **** 			  like lcd_string("This is AVR")
+  29:lcd118010.h   **** 	lcd_showvalue()- This will show a 3-digit decimal value on the LCD. For example if
+  30:lcd118010.h   **** 			  we give lcd_showvalue(0xFF) then 255 will be displayed.
+  31:lcd118010.h   **** 	lcd_gotoxy()--- Will set the cursor at a particular position on of the LCD.
+  32:lcd118010.h   **** 			  So lcd_gotoxy(1,4) will set the cursor at the 2d row 3rd column
+  33:lcd118010.h   **** 			  row and column address are starts from(0,0)
+  34:lcd118010.h   **** 	lcd_clear()---To clear the LCD
+  35:lcd118010.h   **** 	
+  36:lcd118010.h   **** */
+  37:lcd118010.h   **** 
+  38:lcd118010.h   **** #ifndef _LCD_H_
+  39:lcd118010.h   **** #define _LCD_H_
+  40:lcd118010.h   **** 
+  41:lcd118010.h   **** 
+  42:lcd118010.h   **** unsigned char k=0,j=0;
+  43:lcd118010.h   **** unsigned char save=0;
+  44:lcd118010.h   **** 
+  45:lcd118010.h   **** void lcd_init(void);
+  46:lcd118010.h   **** void lcd_cmd(unsigned char cmd);
+  47:lcd118010.h   **** void latch(void);
+  48:lcd118010.h   **** void dely_ns(unsigned char tim);
+  49:lcd118010.h   **** void lcd_char(unsigned char single);
+  50:lcd118010.h   **** void lcd_string(unsigned char str[32]);
+  51:lcd118010.h   **** void lcd_showvalue(unsigned char num);
+  52:lcd118010.h   **** void lcd_gotoxy(unsigned char row,unsigned char column);
+  53:lcd118010.h   **** void delay_ms(unsigned int ms);
+  54:lcd118010.h   **** void lcd_clear();
+  55:lcd118010.h   **** 
+  56:lcd118010.h   **** void lcd_init(void)	//init the lcd
+  57:lcd118010.h   **** {	
+  58:lcd118010.h   **** 	delay_ms(20);
+  59:lcd118010.h   **** 	save=PORTB;
+  60:lcd118010.h   **** 	DDRB=0x3F;
+  61:lcd118010.h   **** 	delay_ms(15);
+  62:lcd118010.h   **** 	PORTB=0x02;			//interface setup		
+  63:lcd118010.h   **** 	lcd_cmd(0x01);
+  64:lcd118010.h   **** 	lcd_cmd(0x02);
+  65:lcd118010.h   **** 	lcd_cmd(0X80);
+  66:lcd118010.h   **** 	delay_ms(20);
+  67:lcd118010.h   **** }
+  68:lcd118010.h   **** 
+  69:lcd118010.h   **** void latch(void)
+  70:lcd118010.h   **** {
+  71:lcd118010.h   **** PORTB&=~0x20;
+  72:lcd118010.h   **** dely_ns(200);  
+  73:lcd118010.h   **** PORTB|=0x20;
+  74:lcd118010.h   **** dely_ns(200);  
+  75:lcd118010.h   **** PORTB&=~0x20;
+  76:lcd118010.h   **** }
+  77:lcd118010.h   **** 
+  78:lcd118010.h   **** void dely_ns(unsigned char tim)
+  79:lcd118010.h   **** {
+ 351               	tabn	68,0,85,.LM40-.LFBB7
+ 352               	.LM40:
+ 353               		ret
+ 355               	.Lscope7:
+ 357               	.global	latch
+ 359 00d6 90E0      	latch:
+ 361               	.LM41:
+  80:lcd118010.h   **** ;  
+ 362               	prologue: function */
+ 363               	/* frame size = 0 */
+ 365 00dc 2BE0      	.LM42:
+ 366               		cbi 56-32,5
+ 368 00e0 00F0      	.LM43:
+ 369 00e2 2093 0000 		ldi r24,lo8(-56)
+ 370 00e6 9093 0000 		rcall dely_ns
+  81:lcd118010.h   **** (0x02);
+  82:lcd118010.h   **** 	lcd_cmd(0X80);
+  83:lcd118010.h   **** 	delay_ms(20);
+  84:lcd118010.h   **** }
+  85:lcd118010.h   **** 
+ 372               	i 56-32,5
+ 374 00ea 0895      	.LM45:
+ 375               		ldi r24,lo8(-56)
+ 376               		rcall dely_ns
+ 378               	.LM46:
+ 379               		cbi 56-32,5
+ 380               	/* epilogue start */
+ 382               	.LM47:
+ 383               		ret
+ 385               	.Lscope8:
+ 388 00ec C598      	.global	lcd_cmd
+ 390               	lcd_cmd:
+ 392 00f0 00D0      	.LM48:
+ 393               	.LFBB9:
+ 394               		push r17
+ 395 00f2 C59A      	/* prologue: function */
+ 396               	/* frame size = 0 */
+ 397               		mov r17,r24
+ 399 00f6 00D0      	.LM49:
+ 400               		in r24,56-32
+ 401               		andi r24,lo8(-49)
+ 402 00f8 C598      		out 56-32,r24
+ 404               	.LM50:
+ 405               		mov r24,r17
+ 406 00fa 0895      		swap r24
+ 407               		andi r24,lo8(15)
+ 408               		out 56-32,r24
+ 410               	.LM51:
+ 411               		rcall latch
+ 413               	.LM52:
+  86:lcd118010.h   **** =0x02;			//interface setup		
+  87:lcd118010.h   **** 	lcd_cmd(0x01);
+  88:lcd118010.h   **** 	lcd_cmd(0x02);
+ 414               	8,0,94,.LM53-.LFBB9
+ 415               	.LM53:
+ 416               		rcall latch
+ 417 00fc 1F93      	/* epilogue start */
+ 419               	.LM54:
+ 420 00fe 182F      		pop r17
+  89:lcd118010.h   **** RTB;
+ 421               	size	lcd_cmd, .-lcd_cmd
+ 422               	.Lscope9:
+ 425 0104 88BB      	.global	lcd_char
+  90:lcd118010.h   **** (unsigned int ms);
+  91:lcd118010.h   **** void lcd_clear();
+ 426               	e	lcd_char, @function
+ 427               	lcd_char:
+ 429 0108 8295      	.LM55:
+ 430 010a 8F70      	.LFBB10:
+ 431 010c 88BB      		push r17
+  92:lcd118010.h   **** ;
+ 432               	logue: function */
+ 433               	/* frame size = 0 */
+ 434 010e 00D0      		mov r17,r24
+  93:lcd118010.h   ****  lcd_char(unsigned char single);
+ 435               	tabn	68,0,102,.LM56-.LFBB10
+ 436               	.LM56:
+ 437 0110 1F70      		ldi r24,lo8(16)
+ 438 0112 18BB      		out 56-32,r24
+  94:lcd118010.h   **** d_cmd(unsigned char cmd);
+ 439               	abn	68,0,103,.LM57-.LFBB10
+ 440               	.LM57:
+ 441 0114 00D0      		out 56-32,__zero_reg__
+  95:lcd118010.h   **** define _LCD_H_
+ 443               	8:
+ 444               		mov r24,r17
+ 445 0116 1F91      		swap r24
+ 446 0118 0895      		andi r24,lo8(15)
+ 447               		ori r24,lo8(16)
+ 448               		out 56-32,r24
+ 450               	.LM59:
+ 451               		rcall latch
+ 453               	.LM60:
+  96:lcd118010.h   **** umn
+  97:lcd118010.h   **** 			  row and column address are starts from(0,0)
+  98:lcd118010.h   **** 	lcd_clear()---To clear the LCD
+  99:lcd118010.h   **** 	
+ 454               	o8(15)
+ 455               		ori r17,lo8(16)
+ 456               		out 56-32,r17
+ 458               	.LM61:
+ 459               		rcall latch
+ 460 011c 182F      	/* epilogue start */
+ 100:lcd118010.h   **** ill set the cursor at the 2d row 3rd column
+ 101:lcd118010.h   **** 			  row and column address are starts from(0,0)
+ 102:lcd118010.h   **** 	lcd_clear()---To clear the LCD
+ 461               		68,0,108,.LM62-.LFBB10
+ 462               	.LM62:
+ 463 011e 80E1      		pop r17
+ 464 0120 88BB      		ret
+ 103:lcd118010.h   **** ) will set the cursor at the 2d row 3rd column
+ 465               	ze	lcd_char, .-lcd_char
+ 466               	.Lscope10:
+ 104:lcd118010.h   ****  Will set the cursor at a particular position on of the LCD.
+ 468               	tabs	"str:P(0,17)=*(0,11)",64,0,0,28
+ 469               	.global	lcd_string
+ 471 0126 8295      	lcd_string:
+ 473 012a 8061      	.LM63:
+ 474 012c 88BB      	.LFBB11:
+ 105:lcd118010.h   ****  give lcd_showvalue(0xFF) then 255 will be displayed.
+ 475               	28
+ 476               		push r29
+ 477 012e 00D0      	/* prologue: function */
+ 106:lcd118010.h   **** e()- This will show a 3-digit decimal value on the LCD. For example if
+ 478               	frame size = 0 */
+ 479               		movw r28,r24
+ 480 0130 1F70      		rjmp .L34
+ 481 0132 1061      	.L35:
+ 107:lcd118010.h   **** his would be
+ 483               	:
+ 484               		rcall lcd_char
+ 486               	.LM65:
+ 108:lcd118010.h   **** display A. Again lcd_char('b')
+ 487               	w r28,1
+ 488               	.L34:
+ 490 013a 0895      	.LM66:
+ 491               		ld r24,Y
+ 492               		tst r24
+ 493               		brne .L35
+ 494               	/* epilogue start */
+ 496               	.LM67:
+ 497               		pop r29
+ 109:lcd118010.h   **** -- This function will display a single character on the LCD display.
+ 110:lcd118010.h   **** 			  For example lcd_char(0x61) will display A. Again lcd_char('b')
+ 111:lcd118010.h   **** 			  will display b.
+ 498               	et
+ 500               	.Lscope11:
+ 503               	.global	lcd_showvalue
+ 505 0140 EC01      	lcd_showvalue:
+ 507               	.LM68:
+ 112:lcd118010.h   **** display a single character on the LCD display.
+ 113:lcd118010.h   **** 			  For example lcd_char(0x61) will display A. Again lcd_char('b')
+ 114:lcd118010.h   **** 			  will display b.
+ 115:lcd118010.h   **** 	lcd_string()---- This function will display a string. An example of this would be
+ 116:lcd118010.h   **** 			  like lcd_string("This is AVR")
+ 508               	push r14
+ 509               		push r15
+ 510 0144 00D0      		push r16
+ 117:lcd118010.h   **** ill display b.
+ 511               	sh r17
+ 512               	/* prologue: function */
+ 513 0146 2196      	/* frame size = 0 */
+ 514               		mov r17,r24
+ 516               	.LM69:
+ 517 0148 8881      		ldi r22,lo8(100)
+ 518 014a 8823      		rcall __udivmodqi4
+ 519 014c 01F4      		mov r20,r24
+ 118:lcd118010.h   **** display a single character on the LCD display.
+ 119:lcd118010.h   **** 			  For example lcd_char(0x61) will display A. Again lcd_char('b')
+ 521               	v r18,r24
+ 522               		ldi r19,lo8(0)
+ 523 014e DF91      		ldi r24,lo8(-100)
+ 524 0150 CF91      		ldi r25,hi8(-100)
+ 525 0152 0895      		mul r18,r24
+ 526               		movw r14,r0
+ 527               		mul r18,r25
+ 528               		add r15,r0
+ 529               		mul r19,r24
+ 530               		add r15,r0
+ 531               		clr r1
+ 532               		movw r24,r14
+ 120:lcd118010.h   **** -- This function will display a single character on the LCD display.
+ 121:lcd118010.h   **** 			  For example lcd_char(0x61) will display A. Again lcd_char('b')
+ 122:lcd118010.h   **** 			  will display b.
+ 123:lcd118010.h   **** 	lcd_string()---- This function will display a string. An example of this would be
+ 124:lcd118010.h   **** 			  like lcd_string("This is AVR")
+ 533               	
+ 534               		adc r25,__zero_reg__
+ 535               		ldi r22,lo8(10)
+ 536 0154 EF92      		ldi r23,hi8(10)
+ 537 0156 FF92      		rcall __divmodhi4
+ 538 0158 0F93      		mov r16,r22
+ 540               	.LM71:
+ 541               		mov r24,r20
+ 542 015c 182F      		subi r24,lo8(-(48))
+ 125:lcd118010.h   **** ill display b.
+ 126:lcd118010.h   **** 	lcd_string()---- This function will display a string. An example of this would be
+ 543               	d_char
+ 545 015e 64E6      	.LM72:
+ 546 0160 00D0      		mov r24,r16
+ 547 0162 482F      		subi r24,lo8(-(48))
+ 127:lcd118010.h   **** display A. Again lcd_char('b')
+ 548               	l lcd_char
+ 550 0164 282F      	.LM73:
+ 551 0166 30E0      		subi r17,lo8(-(48))
+ 552 0168 8CE9      		add r17,r14
+ 553 016a 9FEF      		ldi r24,lo8(-10)
+ 554 016c 289F      		ldi r25,hi8(-10)
+ 555 016e 7001      		mul r16,r24
+ 556 0170 299F      		mov r16,r0
+ 557 0172 F00C      		clr r1
+ 558 0174 389F      		mov r24,r16
+ 559 0176 F00C      		add r24,r17
+ 560 0178 1124      		rcall lcd_char
+ 561 017a C701      	/* epilogue start */
+ 563 017e 911D      	.LM74:
+ 564 0180 6AE0      		pop r17
+ 565 0182 70E0      		pop r16
+ 566 0184 00D0      		pop r15
+ 567 0186 062F      		pop r14
+ 128:lcd118010.h   **** -- This function will display a single character on the LCD display.
+ 129:lcd118010.h   **** 			  For example lcd_char(0x61) will display A. Again lcd_char('b')
+ 130:lcd118010.h   **** 			  will display b.
+ 568               	value, .-lcd_showvalue
+ 569               	.Lscope12:
+ 131:lcd118010.h   **** display a single character on the LCD display.
+ 573               	al	lcd_gotoxy
+ 575 018e 802F      	lcd_gotoxy:
+ 577 0192 00D0      	.LM75:
+ 132:lcd118010.h   **** D. For e.g lcd_cmd(0x01) will give the clear command.
+ 578               	13:
+ 579               	/* prologue: function */
+ 580 0194 105D      	/* frame size = 0 */
+ 582 0198 86EF      	.LM76:
+ 583 019a 9FEF      		tst r24
+ 584 019c 089F      		brne .L40
+ 586 01a0 1124      	.LM77:
+ 587 01a2 802F      		mov r24,r22
+ 588 01a4 810F      		subi r24,lo8(-(-128))
+ 589 01a6 00D0      		rcall lcd_cmd
+ 590               		ret
+ 133:lcd118010.h   **** cd_cmd() ------ This function is used to give any command instructions to the
+ 591               		68,0,141,.LM78-.LFBB13
+ 592               	.LM78:
+ 593 01a8 1F91      		cpi r24,lo8(1)
+ 594 01aa 0F91      		brne .L42
+ 596 01ae EF90      	.LM79:
+ 597 01b0 0895      		mov r24,r22
+ 598               		subi r24,lo8(-(-64))
+ 599               		rcall lcd_cmd
+ 600               	.L42:
+ 601               		ret
+ 603               	.Lscope13:
+ 134:lcd118010.h   **** ore calling any other functions
+ 135:lcd118010.h   **** 			  to initialize the lcd.
+ 136:lcd118010.h   **** 	lcd_cmd() ------ This function is used to give any command instructions to the
+ 606               	s
+ 608               	delay_ms:
+ 610               	.LM80:
+ 137:lcd118010.h   **** ore calling any other functions
+ 611               	14:
+ 612               	/* prologue: function */
+ 613 01b2 8823      	/* frame size = 0 */
+ 614 01b4 01F4      		rjmp .L44
+ 138:lcd118010.h   **** efore
+ 139:lcd118010.h   **** 	calling any other functions to initialize the lcd.
+ 615               	:
+ 617 01b6 862F      	.LM81:
+ 618 01b8 8058      		ldi r18,lo8(0)
+ 619 01ba 00D0      		ldi r19,hi8(0)
+ 620 01bc 0895      	.L45:
+ 140:lcd118010.h   **** ns of the LCD.
+ 141:lcd118010.h   **** 	Include this header file in your C code. Call the lcd_init() function before
+ 622               	/* #APP */
+ 623               	 ;  156 "lcd118010.h" 1
+ 624 01be 8130      		nop
+ 625 01c0 01F4      	 ;  0 "" 2
+ 142:lcd118010.h   **** ader files have implementation of some common finctions of the LCD.
+ 143:lcd118010.h   **** 	Include this header file in your C code. Call the lcd_init() function before
+ 626               	abn	68,0,155,.LM83-.LFBB14
+ 627               	.LM83:
+ 628 01c2 862F      	/* #NOAPP */
+ 629 01c4 8054      		subi r18,lo8(-(1))
+ 630 01c6 00D0      		sbci r19,hi8(-(1))
+ 631               		ldi r20,hi8(3276)
+ 632 01c8 0895      		cpi r18,lo8(3276)
+ 633               		cpc r19,r20
+ 634               		brne .L45
+ 635               		sbiw r24,1
+ 636               	.L44:
+ 638               	.LM84:
+ 639               		sbiw r24,0
+ 144:lcd118010.h   **** ader files have implementation of some common finctions of the LCD.
+ 145:lcd118010.h   **** 	Include this header file in your C code. Call the lcd_init() function before
+ 146:lcd118010.h   **** 	calling any other functions to initialize the lcd.
+ 147:lcd118010.h   **** 
+ 148:lcd118010.h   **** 
+ 149:lcd118010.h   **** 	lcd_init() ----- Call the lcd_init() function before calling any other functions
+ 640               	epilogue start */
+ 642               	.LM85:
+ 643               		ret
+ 150:lcd118010.h   **** efore
+ 151:lcd118010.h   **** 	calling any other functions to initialize the lcd.
+ 152:lcd118010.h   **** 
+ 647               		224,0,0,.Lscope14-.LFBB14
+ 648               	.Lscope14:
+ 650 01ce 30E0      	.global	lcd_init
+ 153:lcd118010.h   ****  of the LCD.
+ 154:lcd118010.h   **** 	Include this header file in your C code. Call the lcd_init() function before
+ 155:lcd118010.h   **** 	calling any other functions to initialize the lcd.
+ 156:lcd118010.h   **** 
+ 652               	nit:
+ 654               	.LM86:
+ 655               	.LFBB15:
+ 656 01d0 0000      	/* prologue: function */
+ 657               	/* frame size = 0 */
+ 659               	.LM87:
+ 660               		ldi r24,lo8(20)
+ 661 01d2 2F5F      		ldi r25,hi8(20)
+ 662 01d4 3F4F      		rcall delay_ms
+ 664 01d8 2C3C      	.LM88:
+ 665 01da 3407      		in r24,56-32
+ 666 01dc 01F4      		sts save,r24
+ 668               	.LM89:
+ 669               		ldi r24,lo8(63)
+ 670               		out 55-32,r24
+ 672 01e2 01F4      	.LM90:
+ 673               		ldi r24,lo8(15)
+ 157:lcd118010.h   ****  of the LCD.
+ 158:lcd118010.h   **** 	Include this header file in your C code. Call the lcd_init() function before
+ 674               	l delay_ms
+ 676 01e4 0895      	.LM91:
+ 677               		ldi r24,lo8(2)
+ 678               		out 56-32,r24
+ 680               	.LM92:
+ 681               		ldi r24,lo8(1)
+ 682               		rcall lcd_cmd
+ 684               	.LM93:
+ 685               		ldi r24,lo8(2)
+ 686               		rcall lcd_cmd
+ 688               	.LM94:
+ 689               		ldi r24,lo8(-128)
+ 690               		rcall lcd_cmd
+ 692               	.LM95:
+ 693 01e6 84E1      		ldi r24,lo8(20)
+ 694 01e8 90E0      		ldi r25,hi8(20)
+ 695 01ea 00D0      		rcall delay_ms
+ 696               	/* epilogue start */
+ 698 01ec 88B3      	.LM96:
+ 699 01ee 8093 0000 		ret
+ 701               	.Lscope15:
+ 703 01f4 87BB      	.global	lcd_clear
+ 705               	lcd_clear:
+ 707 01f8 90E0      	.LM97:
+ 708 01fa 00D0      	.LFBB16:
+ 709               	/* prologue: function */
+ 710               	/* frame size = 0 */
+ 712 01fe 88BB      	.LM98:
+ 713               		ldi r24,lo8(1)
+ 714               		rcall lcd_cmd
+ 715 0200 81E0      	/* epilogue start */
+ 717               	.LM99:
+ 718               		ret
+ 720 0206 00D0      	.Lscope16:
+ 722               	.global	main
+ 724 020a 00D0      	main:
+ 726               	.Ltext3:
+ 728 020e 90E0      	.LM100:
+ 729 0210 00D0      	.LFBB17:
+ 730               		push r12
+ 731               		push r13
+ 732               		push r14
+ 733 0212 0895      		push r15
+ 734               		push r16
+ 735               		push r17
+ 736               		push r28
+ 737               		push r29
+ 738               	/* prologue: function */
+ 739               	/* frame size = 0 */
+ 159:lcd118010.h   **** ader files have implementation of some common finctions of the LCD.
+ 160:lcd118010.h   **** 	Include this header file in your C code. Call the lcd_init() function before
+ 161:lcd118010.h   **** 	calling any other functions to initialize the lcd.
+ 740               	LM100-.LFBB17
+ 741               	.LM100:
+ 742               	.LFBB17:
+ 743               		push r12
+ 744               		push r13
+ 162:lcd118010.h   **** ns of the LCD.
+ 745               	",36,0,0,main
+ 746               	.global	main
+ 748 0216 00D0      	main:
+ 163:lcd118010.h   **** ocontroller: ATmega-8
+ 750               	.LFBB16
+ 751               	.LM99:
+ 752 0218 0895      		ret
+ 754               	.Lscope16:
+ 756               	.global	main
+ 758               	main:
+ 760               	.Ltext3:
+   1:main.c        **** #include<avr/io.h>	
+   2:main.c        **** #include "uart.h"		
+   3:main.c        **** #include "lcd118010.h"
+   4:main.c        **** #include<util/delay.h>
+   5:main.c        **** #include<avr/interrupt.h>
+   6:main.c        **** void main()
+   7:main.c        **** {
+ 761               	M99:
+ 762               		ret
+ 764 021a CF92      	.Lscope16:
+ 766 021e EF92      	.global	main
+ 768 0222 0F93      	main:
+ 770 0226 CF93      	.Ltext3:
+ 772               	.LM100:
+ 773               	.LFBB17:
+   8:main.c        **** 	uart_init();		
+ 774               	
+ 776 022a 00D0      	.global	main
+   9:main.c        ****     lcd_init();
+ 777               	o8(1)
+ 778               		rcall lcd_cmd
+ 779 022c 00D0      	/* epilogue start */
+  10:main.c        ****     int x;
+  11:main.c        **** 	DDRD=0xF0;
+ 780               	stabn	68,0,161,.LM97-.LFBB16
+ 781               	.LM97:
+ 782 022e 80EF      	.LFBB16:
+ 783 0230 81BB      	/* prologue: function */
+ 784               	/* frame size = 0 */
+ 786               	.LM98:
+ 787               		ldi r24,lo8(1)
+ 788               		rcall lcd_cmd
+ 789               	/* epilogue start */
+   1:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** /* Copyright (c) 2002, Marek Michalkiewicz
+   2:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****    Copyright (c) 2007 Joerg Wunsch
+   3:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****    All rights reserved.
+   4:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+   5:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****    Redistribution and use in source and binary forms, with or without
+   6:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****    modification, are permitted provided that the following conditions are met:
+   7:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+   8:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****    * Redistributions of source code must retain the above copyright
+   9:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****      notice, this list of conditions and the following disclaimer.
+  10:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  11:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****    * Redistributions in binary form must reproduce the above copyright
+  12:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****      notice, this list of conditions and the following disclaimer in
+  13:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****      the documentation and/or other materials provided with the
+  14:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****      distribution.
+  15:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  16:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****    * Neither the name of the copyright holders nor the names of
+  17:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****      contributors may be used to endorse or promote products derived
+  18:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****      from this software without specific prior written permission.
+  19:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  20:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****   THIS SOFTWARE IS PROVIDED BY THE COPYRIGHT HOLDERS AND CONTRIBUTORS "AS IS"
+  21:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****   AND ANY EXPRESS OR IMPLIED WARRANTIES, INCLUDING, BUT NOT LIMITED TO, THE
+  22:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****   IMPLIED WARRANTIES OF MERCHANTABILITY AND FITNESS FOR A PARTICULAR PURPOSE
+  23:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****   ARE DISCLAIMED. IN NO EVENT SHALL THE COPYRIGHT OWNER OR CONTRIBUTORS BE
+  24:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****   LIABLE FOR ANY DIRECT, INDIRECT, INCIDENTAL, SPECIAL, EXEMPLARY, OR
+  25:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****   CONSEQUENTIAL DAMAGES (INCLUDING, BUT NOT LIMITED TO, PROCUREMENT OF
+  26:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****   SUBSTITUTE GOODS OR SERVICES; LOSS OF USE, DATA, OR PROFITS; OR BUSINESS
+  27:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****   INTERRUPTION) HOWEVER CAUSED AND ON ANY THEORY OF LIABILITY, WHETHER IN
+  28:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****   CONTRACT, STRICT LIABILITY, OR TORT (INCLUDING NEGLIGENCE OR OTHERWISE)
+  29:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****   ARISING IN ANY WAY OUT OF THE USE OF THIS SOFTWARE, EVEN IF ADVISED OF THE
+  30:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****   POSSIBILITY OF SUCH DAMAGE. */
+  31:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  32:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** /* $Id: delay_basic.h,v 1.1 2007/05/13 21:23:20 joerg_wunsch Exp $ */
+  33:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  34:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** #ifndef _UTIL_DELAY_BASIC_H_
+  35:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** #define _UTIL_DELAY_BASIC_H_ 1
+  36:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  37:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** #include <inttypes.h>
+  38:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  39:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** /** \file */
+  40:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** /** \defgroup util_delay_basic <util/delay_basic.h>: Basic busy-wait delay loops
+  41:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     \code
+  42:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     #include <util/delay_basic.h>
+  43:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     \endcode
+  44:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  45:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     The functions in this header file implement simple delay loops
+  46:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     that perform a busy-waiting.  They are typically used to
+  47:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     facilitate short delays in the program execution.  They are
+  48:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     implemented as count-down loops with a well-known CPU cycle
+  49:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     count per loop iteration.  As such, no other processing can
+  50:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     occur simultaneously.  It should be kept in mind that the
+  51:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     functions described here do not disable interrupts.
+  52:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  53:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     In general, for long delays, the use of hardware timers is
+  54:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     much preferrable, as they free the CPU, and allow for
+  55:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     concurrent processing of other events while the timer is
+  56:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     running.  However, in particular for very short delays, the
+  57:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     overhead of setting up a hardware timer is too much compared
+  58:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     to the overall delay time.
+  59:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  60:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     Two inline functions are provided for the actual delay algorithms.
+  61:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  62:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** */
+  63:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  64:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** #if !defined(__DOXYGEN__)
+  65:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** static inline void _delay_loop_1(uint8_t __count) __attribute__((always_inline));
+  66:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** static inline void _delay_loop_2(uint16_t __count) __attribute__((always_inline));
+  67:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** #endif
+  68:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  69:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** /** \ingroup util_delay_basic
+  70:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  71:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     Delay loop using an 8-bit counter \c __count, so up to 256
+  72:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     iterations are possible.  (The value 256 would have to be passed
+  73:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     as 0.)  The loop executes three CPU cycles per iteration, not
+  74:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     including the overhead the compiler needs to setup the counter
+  75:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     register.
+  76:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  77:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     Thus, at a CPU speed of 1 MHz, delays of up to 768 microseconds
+  78:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     can be achieved.
+  79:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** */
+  80:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** void
+  81:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** _delay_loop_1(uint8_t __count)
+  82:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** {
+  83:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 	__asm__ volatile (
+  84:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 		"1: dec %0" "\n\t"
+  85:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 		"brne 1b"
+  86:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 		: "=r" (__count)
+  87:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 		: "0" (__count)
+  88:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 	);
+  89:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** }
+  90:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  91:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** /** \ingroup util_delay_basic
+  92:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  93:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     Delay loop using a 16-bit counter \c __count, so up to 65536
+  94:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     iterations are possible.  (The value 65536 would have to be
+  95:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     passed as 0.)  The loop executes four CPU cycles per iteration,
+  96:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     not including the overhead the compiler requires to setup the
+  97:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     counter register pair.
+  98:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 
+  99:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     Thus, at a CPU speed of 1 MHz, delays of up to about 262.1
+ 100:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****     milliseconds can be achieved.
+ 101:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h ****  */
+ 102:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** void
+ 103:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** _delay_loop_2(uint16_t __count)
+ 104:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** {
+ 105:s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h **** 	__asm__ volatile (
+ 790               	stabn	68,0,161,.LM97-.LFBB16
+ 791               	.LM97:
+ 792 0232 20E3      	.LFBB16:
+ 793 0234 E22E      	/* prologue: function */
+ 794 0236 25E7      	/* frame size = 0 */
+ 796               	.LM98:
+ 797               		ldi r24,lo8(1)
+ 798               		rcall lcd_cmd
+ 799               	/* epilogue start */
+ 801               	.LM99:
+  12:main.c        **** 	while(1)
+  13:main.c        **** 	{
+  14:main.c        **** 
+  15:main.c        ****          x=uart_read();
+  16:main.c        **** 		 _delay_ms(10);
+  17:main.c        **** 		 PORTD =0X00;
+  18:main.c        **** 		lcd_gotoxy(1,0);
+  19:main.c        **** 		lcd_showvalue(x);
+  20:main.c        **** 		
+  21:main.c        **** 		if(x==102)		//forward
+  22:main.c        **** 		PORTD=0xa0;			
+  23:main.c        **** 		else if(x==108)		//left
+  24:main.c        **** 			PORTD=0x60;
+  25:main.c        **** 		else if(x==114)		//right
+  26:main.c        **** 			PORTD=0x90;
+ 802               	B16:
+ 803               	/* prologue: function */
+ 804 023a 90E9      	/* frame size = 0 */
+ 806               	.LM98:
+ 807               		ldi r24,lo8(1)
+ 808 023e 80E6      		rcall lcd_cmd
+ 809 0240 D82E      	/* epilogue start */
+ 811               	.LM99:
+ 812 0242 00EA      		ret
+ 814               	.Lscope16:
+ 816               	.global	main
+ 818               	main:
+ 820 0244 5F9B      	.Ltext3:
+ 822               	.LM100:
+ 823               	.LFBB17:
+ 824 0248 1CB1      		push r12
+ 825               		push r13
+ 826               		push r14
+ 827               		push r15
+ 828               		push r16
+ 829               		push r17
+ 830               		push r28
+ 831 024a C12F      		push r29
+ 832 024c D0E0      	/* prologue: function */
+ 833               	/* frame size = 0 */
+ 835               	.LM101:
+ 836               		rcall uart_init
+ 838               	.LM102:
+ 839               		rcall lcd_init
+ 841 024e C701      	.LM103:
+ 842               		ldi r24,lo8(-16)
+ 843               		out 49-32,r24
+ 844 0250 0197      	.LBB14:
+ 845 0252 01F4      	.LBB15:
+ 846               	.LBB16:
+ 847               	.LBB17:
+ 849               	.Ltext4:
+ 851               	.LM104:
+ 852               		ldi r18,lo8(30000)
+ 853               		mov r14,r18
+ 854               		ldi r18,hi8(30000)
+ 855               		mov r15,r18
+ 856 0254 12BA      	.LBE17:
+ 857               	.LBE16:
+ 858               	.LBE15:
+ 859 0256 81E0      	.LBE14:
+ 861 025a 00D0      	.Ltext5:
+ 863               	.LM105:
+ 864 025c 812F      		ldi r25,lo8(-112)
+ 865 025e 00D0      		mov r12,r25
+ 867               	.LM106:
+ 868 0260 C636      		ldi r24,lo8(96)
+ 869 0262 D105      		mov r13,r24
+ 871               	.LM107:
+ 872               		ldi r16,lo8(-96)
+ 873 0266 02BB      	.L61:
+ 874 0268 00C0      	.LBB21:
+ 875               	.LBB22:
+ 877               	.Ltext6:
+ 879 026c D105      	.LM108:
+ 880 026e 01F4      		sbis 43-32,7
+ 881               		rjmp .L61
+ 883 0270 D2BA      	.LM109:
+ 884 0272 00C0      		in r17,44-32
+ 885               	.LBE22:
+ 886               	.LBE21:
+ 888 0274 C237      	.Ltext7:
+ 890 0278 01F4      	.LM110:
+ 891               		mov r28,r17
+ 892               		ldi r29,lo8(0)
+ 893 027a C2BA      	.LBB23:
+ 894 027c 00C0      	.LBB20:
+ 895               	.LBB19:
+  27:main.c        **** 		else PORTD=0x00;		//stop		
+ 896               	7:
+ 898 027e 12BA      	.LM110:
+ 899 0280 00C0      		mov r28,r17
+ 900               		ldi r29,lo8(0)
+ 901               	.LBB23:
+ 902               	.LBB20:
+ 903               	.LBB19:
+ 904               	.LBB18:
+ 906               	.Ltext8:
+ 908               	.LM111:
+ 909               		movw r24,r14
+ 910               	/* #APP */
+ 911 0000 00        	 ;  105 "s:/program files/winavr-20100110/lib/gcc/../../avr/include/util/delay_basic.h" 1
+ 912               		1: sbiw r24,1
+ 913               		brne 1b
+ 914               	 ;  0 "" 2
+ 915               	/* #NOAPP */
+ 916               	.LBE18:
+ 917 0001 00        	.LBE19:
+ 918               	.LBE20:
+ 919               	.LBE23:
+ 921               	.Ltext9:
+ 923 0002 00        	.LM112:
+ 924               		out 50-32,__zero_reg__
+ 926               	.LM113:
+ 927               		ldi r24,lo8(1)
+ 928               		ldi r22,lo8(0)
+ 929               		rcall lcd_gotoxy
+DEFINED SYMBOLS
+                            *ABS*:00000000 main.c
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:2      *ABS*:0000003f __SREG__
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:3      *ABS*:0000003e __SP_H__
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:4      *ABS*:0000003d __SP_L__
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:5      *ABS*:00000034 __CCP__
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:6      *ABS*:00000000 __tmp_reg__
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:7      *ABS*:00000001 __zero_reg__
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:71     .text:00000000 uart_read
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:97     .text:00000008 uart_delay
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:164    .text:0000002c uart_string
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:209    .text:0000004e uart_char
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:238    .text:0000005c uart_num
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:309    .text:000000ba uart_init
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:348    .text:000000d2 dely_ns
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:910    .bss:00000000 k
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:916    .bss:00000001 j
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:380    .text:000000ec latch
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:413    .text:000000fc lcd_cmd
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:453    .text:0000011a lcd_char
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:497    .text:0000013c lcd_string
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:532    .text:00000154 lcd_showvalue
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:605    .text:000001b2 lcd_gotoxy
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:639    .text:000001ca delay_ms
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:685    .text:000001e6 lcd_init
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:922    .bss:00000002 save
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:739    .text:00000214 lcd_clear
+C:\Users\SAMVRIT\AppData\Local\Temp/cc59X5dk.s:758    .text:0000021a main
+
+UNDEFINED SYMBOLS
+__udivmodqi4
+__divmodhi4
+__do_clear_bss

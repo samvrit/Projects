@@ -1,6 +1,6 @@
 This is a repository containing all my project files and documentation
 
-- This is a 1-D Localization Problem. The map is given. User has to input the sensor values (0s and/or 1s). Once the robot figures out where it started, it will display the same. '3' is the starting point and '2' is the ending point.
+- 1-D Localization: This is a 1-D Localization Problem. The map is given. User has to input the sensor values (0s and/or 1s). Once the robot figures out where it started, it will display the same. '3' is the starting point and '2' is the ending point.
 - Electronic Dartboard: This is a project aimed to develop an electronic dartboard which can output the score to a server every time a dart hits a target. The output is displayed on a remote computer.
 - Grid Solving Robot: An international level robotics competition held at IIT Bombay. The robot is given specific coordinates on a grid, to which it is supposed to navigate, and display the colour code of the surrounding four squares. The squares may have white colour or no colour, which the robot is supposed to indicate using four on-board LEDs.
 - Line Follower using Image Processing

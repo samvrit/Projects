@@ -1,1 +1,2 @@
+<h1>Electronic Dartboard</h1>
 This is a project aimed to develop an electronic dartboard which can output the score to a server every time a dart hits a target. The output is displayed on a remote computer.

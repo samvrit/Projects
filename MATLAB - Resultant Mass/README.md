@@ -1,3 +1,4 @@
+<h1>MATLAB Program for Finding Resultant Mass for Balancing Rotating Masses</h1>
 A MATLAB program to find the resultant mass for balancing of rotating masses on common axis (planar).
 
 Installation:

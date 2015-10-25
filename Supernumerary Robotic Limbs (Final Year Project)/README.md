@@ -9,6 +9,6 @@ The project was inspired by the work done by students of MIT under Prof. Harry A
 
 Videos:
 
-1. Robot in action: https://www.youtube.com/watch?v=1jS6DkzcwM0
-2. Robot Inverse Kinematics Simulation (MATLAB Robotics Toolbox): https://www.youtube.com/watch?v=-V_I5MpTWcI
-3. Paper presentation on the project at the 20th International Conference on Methods and Models in Automation and Robotics: https://www.youtube.com/watch?v=2IG5NMGldtQ
+1. <a href="https://www.youtube.com/watch?v=1jS6DkzcwM0" target="_blank">Robot in action</a>
+2. <a href="https://www.youtube.com/watch?v=-V_I5MpTWcI" target="_blank">Robot Inverse Kinematics Simulation (MATLAB Robotics Toolbox)</a>
+3. <a href="https://www.youtube.com/watch?v=2IG5NMGldtQ" target="_blank">Paper presentation on the project at the 20th International Conference on Methods and Models in Automation and Robotics</a>

@@ -1,0 +1,8 @@
+prefix=/home/samvrit/Desktop/ROS/srlrobot/devel
+
+Name: srl
+Description: Description of srl
+Version: 0.0.0
+Cflags: 
+Libs: -L/home/samvrit/Desktop/ROS/srlrobot/devel/lib 
+Requires: 

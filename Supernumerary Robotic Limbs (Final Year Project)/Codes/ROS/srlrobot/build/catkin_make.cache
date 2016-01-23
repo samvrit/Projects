@@ -1,0 +1,2 @@
+srl
+-DCATKIN_DEVEL_PREFIX=/home/samvrit/Desktop/ROS/srlrobot/devel -DCMAKE_INSTALL_PREFIX=/home/samvrit/Desktop/ROS/srlrobot/install -G Unix Makefiles

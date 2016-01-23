@@ -1,0 +1,7 @@
+set(_CATKIN_CURRENT_PACKAGE "srl")
+set(srl_MAINTAINER "samvrit <samvrit@todo.todo>")
+set(srl_DEPRECATED "")
+set(srl_VERSION "0.0.0")
+set(srl_BUILD_DEPENDS "roscpp" "rospy" "sensor_msgs" "std_msgs" "tf")
+set(srl_RUN_DEPENDS "roscpp" "rospy" "sensor_msgs" "std_msgs" "tf")
+set(srl_BUILDTOOL_DEPENDS "catkin")

@@ -24,14 +24,16 @@ int main(int argc, char** argv) {
     while (ros::ok()) {
         //update joint_state
         joint_state.header.stamp = ros::Time::now();
-        joint_state.name.resize(3);
-        joint_state.position.resize(3);
+        joint_state.name.resize(4);
+        joint_state.position.resize(4);
         joint_state.name[0] ="joint_1";
         joint_state.position[0] = swivel;
         joint_state.name[1] ="joint_2";
         joint_state.position[1] = tilt;
         joint_state.name[2] ="joint_3";
-        joint_state.position[2] = height;
+        joint_state.position[2] = swivel;
+        joint_state.name[3] ="joint_4";
+        joint_state.position[3] = tilt;
 
 
         // update transform

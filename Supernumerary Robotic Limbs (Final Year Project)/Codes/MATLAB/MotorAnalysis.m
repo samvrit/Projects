@@ -1,4 +1,4 @@
-s = serial('COM3');
+s = serial('COM4');
 s.Terminator = 'CR';
 fopen(s);
 

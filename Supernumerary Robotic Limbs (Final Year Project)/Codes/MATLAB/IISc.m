@@ -174,7 +174,7 @@ disp(str1)
 %plot(yl,zl,'o');
 plot3(xl,yl,zl);
 %r.teach(q1)
-%r.teach(q2)
+r.teach(q2)
 
 % figure;
 % 

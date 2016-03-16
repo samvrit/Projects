@@ -14,3 +14,4 @@ Videos:
 1. <a href="https://www.youtube.com/watch?v=1jS6DkzcwM0" target="_blank">Robot in action</a>
 2. <a href="https://www.youtube.com/watch?v=-V_I5MpTWcI" target="_blank">Robot Inverse Kinematics Simulation (MATLAB Robotics Toolbox)</a>
 3. <a href="https://www.youtube.com/watch?v=2IG5NMGldtQ" target="_blank">Paper presentation on the project at the 20th International Conference on Methods and Models in Automation and Robotics</a>
+4. <a href="https://www.youtube.com/watch?v=e1p7m6lmJI8" target="_blank">Robot writing the word "IISc"</a>
